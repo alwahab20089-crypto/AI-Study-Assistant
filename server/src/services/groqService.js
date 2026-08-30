@@ -37,7 +37,6 @@ const REQUEST_TIMEOUT_MS = 90000;
  */
 export const getChatCompletion = async (messages, options = {}) => {
   const client = getClient();
-  
   const model = process.env.GROQ_MODEL;
 
   if (!model) {
