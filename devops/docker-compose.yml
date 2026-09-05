@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: devops/backend.Dockerfile
+    container_name: studynova-backend
+    env_file:
+      - ../server/.env
+    ports:
+      - "5002:5000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: devops/frontend.Dockerfile
+      args:
+        VITE_API_URL: http://localhost:5002/api
+    container_name: studynova-frontend
+    ports:
+      - "3003:80"
+    restart: unless-stopped
