@@ -37,6 +37,9 @@ jobs:
         run: docker build -f devops/backend.Dockerfile -t ghcr.io/${{ github.repository_owner }}/studynova-backend:latest .
       - name: Push backend image to GHCR
         run: docker push ghcr.io/${{ github.repository_owner }}/studynova-backend:latest
+      - name: Trigger Render deployment
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
 
   frontend:
     runs-on: ubuntu-latest
