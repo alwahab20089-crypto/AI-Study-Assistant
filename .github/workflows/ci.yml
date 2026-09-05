@@ -35,6 +35,9 @@ jobs:
         run: npm ci
       - name: Build backend Docker image
         run: docker build -f devops/backend.Dockerfile -t ghcr.io/${{ github.repository_owner }}/studynova-backend:latest .
+      - name: Push backend image to GHCR
+        run: docker push ghcr.io/${{ github.repository_owner }}/studynova-backend:latest
+
   frontend:
     runs-on: ubuntu-latest
 
